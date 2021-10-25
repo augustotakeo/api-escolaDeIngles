@@ -1,0 +1,8 @@
+{
+  "name": "Api-EscolaDeIngles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/augustotakeo/api-escolaDeIngles.git",
+  "author": "Augusto Takeo Souza Abe",
+  "license": "MIT"
+}
