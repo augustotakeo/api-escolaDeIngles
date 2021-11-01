@@ -1,8 +1,21 @@
 {
   "name": "Api-EscolaDeIngles",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "nodemon api/index.js"
+  },
   "repository": "https://github.com/augustotakeo/api-escolaDeIngles.git",
   "author": "Augusto Takeo Souza Abe",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "path": "^0.12.7",
+    "sequelize": "^6.8.0",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
 }
