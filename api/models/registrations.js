@@ -14,10 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Registrations.init({
-    status: DataTypes.STRING
+    status: {
+      type: DataTypes.STRING,
+      validate: {
+        isValid(data) {
+          if( data != "confirmado" & data != "cancelado" ) {
+            throw new Error("status só pode ser cancelado ou confirmado")
+          }
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Registrations',
+    paranoid: true
   });
   return Registrations;
 };
