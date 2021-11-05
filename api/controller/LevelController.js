@@ -6,7 +6,7 @@ class LevelController {
             const levels = await db.Levels.findAll();
             return res.json(levels);
         } catch(error) {
-            return res.status(500).json(error);
+            return res.status(500).json(error.message);
         }
     }
 
@@ -18,7 +18,7 @@ class LevelController {
             })
             return res.json(level);
         } catch(error) {
-            return res.status(500).json(error);
+            return res.status(500).json(error.message);
         }
     }
 
@@ -28,7 +28,7 @@ class LevelController {
             const level = await db.Levels.create( data );
             return res.json(level);
         } catch(error) {
-            return res.status(500).json(error);
+            return res.status(500).json(error.message);
         }
     }
 
@@ -44,7 +44,7 @@ class LevelController {
             );
             return res.status(204).end();
         } catch(error) {
-            return res.status(500).json(error);
+            return res.status(500).json(error.message);
         }
     }
 
@@ -56,7 +56,19 @@ class LevelController {
             });
             return res.status(204).end();
         } catch(error) {
-            return res.status(500).json(error);
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async restore(req, res) {
+        try {
+            const { id } = req.params;
+            await db.Levels.restore({
+                where: { id }
+            });
+            return res.status(204).end();
+        } catch(error) {
+            return res.status(500).json(error.message);
         }
     }
 }

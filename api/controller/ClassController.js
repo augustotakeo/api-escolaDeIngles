@@ -59,6 +59,18 @@ class ClassController {
             return res.status(500).send(error.message);
         }
     }
+
+    static async restore(req, res) {
+        try {
+            const { id } = req.params;
+            await db.Classes.restore({
+                where: { id }
+            })
+            return res.status(204).end();
+        } catch(error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = ClassController;

@@ -1,9 +1,18 @@
 const db = require("../models");
 
 class PersonController {
-    static async getPeople(req, res) {
+    static async getActivePeople(req, res) {
         try {
             const people = await db.People.findAll();
+            res.json(people);
+        } catch(error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async getAllPeople(req, res) {
+        try {
+            const people = await db.People.scope("allPeople").findAll();
             res.json(people);
         } catch(error) {
             return res.status(500).json(error.message);
@@ -54,6 +63,18 @@ class PersonController {
             await db.People.destroy( {
                 where: {id}
             });
+            return res.status(204).end();
+        } catch(error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async restore(req, res) {
+        try {
+            const { id } = req.params;
+            await db.People.restore({
+                where: { id }
+            })
             return res.status(204).end();
         } catch(error) {
             return res.status(500).json(error.message);
@@ -121,6 +142,21 @@ class PersonController {
         try {
             const { idStudent, idRegistration } = req.params;
             await db.Registrations.destroy({
+                where: { 
+                    id: idRegistration,
+                    student_id: idStudent
+                }
+            });
+            return res.status(204).end();
+        } catch(error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async restoreRegistration(req, res) {
+        try {
+            const { idStudent, idRegistration } = req.params;
+            await db.Registrations.restore({
                 where: { 
                     id: idRegistration,
                     student_id: idStudent
