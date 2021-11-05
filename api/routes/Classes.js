@@ -7,5 +7,6 @@ router.get("/:id", ClassController.getClass);
 router.post("/", ClassController.create);
 router.put("/:id", ClassController.update);
 router.delete("/:id", ClassController.delete);
+router.post("/:id/restore", ClassController.restore);
 
 module.exports = router;

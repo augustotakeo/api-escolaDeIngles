@@ -7,5 +7,6 @@ router.get("/:id", LevelController.getLevel);
 router.post("/", LevelController.create);
 router.put("/:id", LevelController.update);
 router.delete("/:id", LevelController.delete);
+router.post("/:id/restore", LevelController.restore);
 
 module.exports = router;
