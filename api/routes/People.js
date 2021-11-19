@@ -10,6 +10,11 @@ router.post("/", PersonController.create);
 router.put("/:id", PersonController.update);
 router.delete("/:id", PersonController.delete);
 router.post("/:id/restore", PersonController.restore);
+router.post("/:id/cancel", PersonController.cancel);
+
+router.get("/registrations/:class_id/confirmed", PersonController.getConfirmedRegistrationByClass);
+
+router.get("/classes/crowded", PersonController.getCrowdedClasses);
 
 router.get("/:idStudent/registrations", PersonController.getRegistrations);
 router.get("/:idStudent/registrations/:idRegistration", PersonController.getRegistration);
