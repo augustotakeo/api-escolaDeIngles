@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   class People extends Model {
     static associate(models) {
       models.People.hasMany(models.Registrations, {
-        foreignKey: "student_id"
+        foreignKey: "student_id",
+        scope: {
+          status: "confirmado"
+        },
+        as: "registrations"
       });
       models.People.hasMany(models.Classes, {
         foreignKey: "professor_id"
