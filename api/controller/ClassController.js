@@ -26,7 +26,7 @@ class ClassController {
     static async getClass(req,res) {
         try {
             const { id } = req.params;
-            const class_ = await classService.findOne( id );
+            const class_ = await classService.findOne( { id } );
             return res.json(class_);
         } catch(error) {
             return res.status(500).send(error.message);
